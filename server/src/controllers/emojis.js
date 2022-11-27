@@ -28,12 +28,12 @@ module.exports.index = async (req, res) =>{
         listEmojis = listEmojis.slice(start);
         listEmojis = listEmojis.filter((item, index) => index < limit);
 
-        res.json({
+        res.status(200).json({
             result: listEmojis,
             total: countEmojis,
         })
     } catch(error){
-         res.json({
+         res.status(500).json({
             errors: [{
                 message: error.message
             }]
@@ -51,11 +51,11 @@ module.exports.show = async (req, res) =>{
     try {
         const emoji = await emojis.findById(id)
 
-        res.json({
+        res.status(200).json({
             result: emoji,
         })
     }catch(error){
-        res.json({
+        res.status(500).json({
             errors: [{
                 message: error.message
             }]
